@@ -11,6 +11,7 @@
 // NOTE: you do _not_ need to install axios as it's included in the HTML via script element
 
 let topicsContainer = document.querySelector('div.topics');
+let tabsArray = [];
 
 axios.get("https://lambda-times-api.herokuapp.com/topics")
 .then((response) => {
@@ -20,7 +21,9 @@ axios.get("https://lambda-times-api.herokuapp.com/topics")
        let tab = document.createElement('div');
        tab.classList.add('tab');
        tab.textContent = datum;
+       tabsArray.push(datum);
        console.log(tab);
        topicsContainer.appendChild(tab);
    })
 });
+
