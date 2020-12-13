@@ -21,19 +21,6 @@
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
-
-axios.get("https://lambda-times-api.herokuapp.com/articles").
-then((response) => {
-    let articlesObject = response.data.articles;
-    let keys = [];
-    for(let key in articlesObject) {
-        keys.push(key);
-    }
-    console.log(keys);
-
-})
-
-
 function articleBuilder(articleObj) {
     let cardContainer = document.createElement('div');
     let headLineContainer = document.createElement('div');
@@ -60,7 +47,20 @@ function articleBuilder(articleObj) {
     return cardContainer;
 }
 
+let cardsContainer = document.querySelector('div.cards-container');
 
+axios.get("https://lambda-times-api.herokuapp.com/articles").
+then((response) => {
+    let articlesObject = response.data.articles;
+    let keys = [];
+    for(let key in articlesObject) {
+        let topicsArray = articlesObject[key];
+        console.log(topicsArray);
+        topicsArray.forEach((topic) => {
+            cardsContainer.appendChild(articleBuilder(topic));
+        })
+    }
+})
 
 //Test Object
 let articleObj = {
@@ -69,5 +69,3 @@ let articleObj = {
     headline: "The Hottest New Bootstrap 4 Components Every Developer Needs to Know About",
     id: "8b881573-414b-4b0d-80a8-2d7a3d546e02"
 }
-
-console.log(articleBuilder(articleObj));
