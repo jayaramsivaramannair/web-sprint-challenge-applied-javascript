@@ -57,7 +57,18 @@ then((response) => {
         let topicsArray = articlesObject[key];
         console.log(topicsArray);
         topicsArray.forEach((topic) => {
-            cardsContainer.appendChild(articleBuilder(topic));
+            let card = articleBuilder(topic);
+            //A card added for each article to the DOM
+            cardsContainer.appendChild(card);
+            //Added Event Listener so that the headline is logged to the console when the card is clicked!
+            card.addEventListener('click', function(e) {
+                let cardObj = card;
+                for(let paths of e.path) {
+                    if(paths === cardObj) {
+                        console.log(paths.firstChild.innerHTML);
+                    }
+                }
+            })
         })
     }
 })
