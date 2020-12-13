@@ -71,6 +71,15 @@ then((response) => {
             })
         })
     }
+}).
+catch((error) => {
+    let errorContainer = document.querySelector('div.errors-container');
+    let errorMessage = document.createElement('h3');
+    let customizedError = document.createElement('p');
+    customizedError.textContent = "Failed to Obtain Articles!!!";
+    errorMessage.textContent = error;
+    errorContainer.appendChild(errorMessage);  
+    errorContainer.appendChild(customizedError);
 })
 
 //Test Object

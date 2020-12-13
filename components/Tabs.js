@@ -25,5 +25,14 @@ axios.get("https://lambda-times-api.herokuapp.com/topics")
        console.log(tab);
        topicsContainer.appendChild(tab);
    })
-});
+}).
+catch((error) => {
+    let errorContainer = document.querySelector('div.errors-container');
+    let errorMessage = document.createElement('h3');
+    let customizedError = document.createElement('p');
+    customizedError.textContent = "Failed to Obtain Topics for Tabs!";
+    errorMessage.textContent = error;
+    errorContainer.appendChild(errorMessage);  
+    errorContainer.appendChild(customizedError);
+})
 
