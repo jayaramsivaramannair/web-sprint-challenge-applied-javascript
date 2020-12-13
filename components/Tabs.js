@@ -12,6 +12,10 @@
 
 let topicsContainer = document.querySelector('div.topics');
 let tabsArray = [];
+let tab = document.createElement('div');
+tab.textContent = 'all';
+tab.classList.add('tab');
+topicsContainer.appendChild(tab);
 
 axios.get("https://lambda-times-api.herokuapp.com/topics")
 .then((response) => {
@@ -22,7 +26,6 @@ axios.get("https://lambda-times-api.herokuapp.com/topics")
        tab.classList.add('tab');
        tab.textContent = datum;
        tabsArray.push(datum);
-       console.log(tab);
        topicsContainer.appendChild(tab);
    })
 }).

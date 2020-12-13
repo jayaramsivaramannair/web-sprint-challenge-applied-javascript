@@ -21,6 +21,11 @@
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 
+
+/* The MVP IS IMPLEMENTED IN THIS FILE. FILTERING FUNCTION IS INCLUDED IN CAROUSEL.JS*/
+/* THE CODE IN CAROUSEL.JS INCLUDES THIS CODE BUT IT EXTENDS THE CODE TO ENABLE FILTER FUNCTIONALITY*/
+/* COMMENT OUT THE CODE BELOW AND UNCOMMENT THE CODE IN CAROUSEL.JS TO SEE THE FILTERING FUNCTION IN ACTION */
+
 function articleBuilder(articleObj) {
     let cardContainer = document.createElement('div');
     let headLineContainer = document.createElement('div');
@@ -49,6 +54,7 @@ function articleBuilder(articleObj) {
 
 let cardsContainer = document.querySelector('div.cards-container');
 
+
 axios.get("https://lambda-times-api.herokuapp.com/articles").
 then((response) => {
     let articlesObject = response.data.articles;
@@ -59,6 +65,8 @@ then((response) => {
         topicsArray.forEach((topic) => {
             let card = articleBuilder(topic);
             //A card added for each article to the DOM
+            card.classList.add(key);
+            card.classList.add('all');
             cardsContainer.appendChild(card);
             //Added Event Listener so that the headline is logged to the console when the card is clicked!
             card.addEventListener('click', function(e) {
@@ -82,10 +90,3 @@ catch((error) => {
     errorContainer.appendChild(customizedError);
 })
 
-//Test Object
-let articleObj = {
-    authorName: "MAX GOODBOYE",
-    authorPhoto: "https://tk-assets.lambdaschool.com/247dd20f-7e32-479b-a861-c3bbe85b5f0c_max.jpg",
-    headline: "The Hottest New Bootstrap 4 Components Every Developer Needs to Know About",
-    id: "8b881573-414b-4b0d-80a8-2d7a3d546e02"
-}
