@@ -26,6 +26,7 @@
 /* THE CODE IN CAROUSEL.JS INCLUDES THIS CODE BUT IT EXTENDS THE CODE TO ENABLE FILTER FUNCTIONALITY*/
 /* COMMENT OUT THE CODE BELOW AND UNCOMMENT THE CODE IN CAROUSEL.JS TO SEE THE FILTERING FUNCTION IN ACTION */
 
+
 function articleBuilder(articleObj) {
     let cardContainer = document.createElement('div');
     let headLineContainer = document.createElement('div');
@@ -89,4 +90,3 @@ catch((error) => {
     errorContainer.appendChild(errorMessage);  
     errorContainer.appendChild(customizedError);
 })
-
